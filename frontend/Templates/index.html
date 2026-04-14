@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tasks — Do it.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- Background grid lines -->
+  <div class="grid-lines" aria-hidden="true">
+    <div class="gl gl-1"></div>
+    <div class="gl gl-2"></div>
+    <div class="gl gl-3"></div>
+  </div>
+
+  <div class="layout">
+
+    <!-- ── Sidebar ───────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <span class="brand-name">do<em>it</em></span>
+        </div>
+        <p class="brand-sub">Your minimal task companion.</p>
+      </div>
+
+      <nav class="filters">
+        <button class="filter-btn active" data-filter="all">
+          <span class="filter-icon">◈</span> All tasks
+          <span class="filter-count" id="count-all">0</span>
+        </button>
+        <button class="filter-btn" data-filter="active">
+          <span class="filter-icon">◇</span> Active
+          <span class="filter-count" id="count-active">0</span>
+        </button>
+        <button class="filter-btn" data-filter="done">
+          <span class="filter-icon">◆</span> Completed
+          <span class="filter-count" id="count-done">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="clear-btn" id="clear-btn">Clear completed</button>
+      </div>
+    </aside>
+
+    <!-- ── Main area ─────────────────────────────── -->
+    <main class="main">
+
+      <!-- Header -->
+      <header class="page-header">
+        <h1>My Tasks<em class="header-wave">.</em></h1>
+        <p class="header-date" id="today-date"></p>
+      </header>
+
+      <!-- Add task form -->
+    <form action="/submit" method="POST">
+        <section class="form-section">
+          <div class="form-card">
+            <h2 class="form-title">+ New Task</h2>
+            <div class="form-body">
+              <div class="field">
+              <label for="item-name">Item Name</label>
+              <input id="item-name" name="item-name" type="text" placeholder="What needs to be done?" autocomplete="off"/>
+            </div>
+            <div class="field">
+              <label for="item-desc">Item Description</label>
+              <textarea id="item-desc" name="item-desc" placeholder="Add a note or detail…"></textarea>
+            </div>
+            <button class="add-btn" id="add-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              Add Task
+            </button>
+          </div>
+        </div>
+      </section>
+    </form> 
+
+
+    
+      <!-- Task list -->
+      <section class="tasks-section">
+        <div class="tasks-header">
+          <span class="tasks-label" id="tasks-label">All tasks</span>
+          <span class="progress-text" id="progress-text">0 / 0 done</span>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <!-- Empty state -->
+        <div class="empty-state" id="empty-state">
+          <div class="empty-icon">✦</div>
+          <p>No tasks yet.<br/>Add one above to get started.</p>
+        </div>
+
+        <!-- List -->
+        <ul class="task-list" id="task-list"></ul>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- <script src="TO-DO.js"></script> -->
+</body>
+</html>
